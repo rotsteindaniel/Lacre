@@ -26,7 +26,7 @@ export default function Home() {
   console.log(diagramadorComFoto);
 
   // Função para formatar números inseridos pelo usuário
-  const formatNumberInput = (input) => {
+  const formatNumberInput = (input: any) => {
     const formattedInput = input.replace(/[^0-9,.]/g, ""); // Remover caracteres não numéricos, exceto vírgula e ponto
     return formattedInput;
   };
@@ -57,7 +57,9 @@ export default function Home() {
         <form>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="pages">Quantas paginas terá o livro?</Label>
+              <Label htmlFor="pages">
+                Quantas paginas terá o livro? (Total)
+              </Label>
               <Input
                 id="pages"
                 placeholder="Quantas paginas terá o livro?"
