@@ -53,8 +53,8 @@ export default function Home() {
   // Custos ligados a distribuição imposto e margem de lucro
   const [transporte, setTransporte] = useState(0.15);
   const [distribuicao, setDistribuicao] = useState(0.1);
-  const [margemDeLucro, setMargemDeLucro] = useState(0.2);
-  const [imposto, setImposto] = useState(0.07);
+  const [margemDeLucro, setMargemDeLucro] = useState(1.2);
+  const [imposto, setImposto] = useState(1.07);
   // Custos ligados a distribuição imposto e margem de lucro
 
   // Função para formatar números inseridos pelo usuário
