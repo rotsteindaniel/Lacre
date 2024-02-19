@@ -472,7 +472,7 @@ export default function Home() {
                 </Label>
                 <Input
                   id="tratamentoPorImagem"
-                  placeholder="Custo por tratamento de imagem (custo por foto)"
+                  placeholder="Tratamento de imagem (custo por foto)"
                   type="text"
                   value={tratamentoPorImagem}
                   onChange={(e) =>
@@ -486,7 +486,7 @@ export default function Home() {
                 </Label>
                 <Input
                   id="tratamentoPorIlustracao"
-                  placeholder="Custo por tratamento de ilustração (custo por ilustração)"
+                  placeholder="Tratamento de ilustração (custo por ilustração)"
                   type="text"
                   value={tratamentoPorIlustracao}
                   onChange={(e) =>
