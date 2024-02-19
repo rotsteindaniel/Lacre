@@ -94,9 +94,9 @@ export default function Home() {
       parseFloat(impressãoComFoto.replace(",", ".")) *
         parseFloat(paginasComFotos.replace(",", ".")) +
       parseFloat(fotos.replace(",", ".")) *
-        parseFloat(tratamentoPorImagem.replace(",", "."));
-    +parseFloat(ilustracoes.replace(",", ".")) *
-      parseFloat(tratamentoPorIlustracao.replace(",", "."));
+        parseFloat(tratamentoPorImagem.replace(",", ".")) +
+      parseFloat(ilustracoes.replace(",", ".")) *
+        parseFloat(tratamentoPorIlustracao.replace(",", "."));
 
     const totalCustoTransporte = totalCustoImpressao * transporte;
     const totalCustoDistribuicao = totalCustoImpressao * distribuicao;
