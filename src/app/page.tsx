@@ -46,6 +46,8 @@ export default function Home() {
   //Custos ligados a impressão
   const [impressãoSemFoto, setImpressãoSemFoto] = useState("");
   const [impressãoComFoto, setImpressãoComFoto] = useState("");
+  const [tratamentoPorImagem, setTratamentoPorImagem] = useState("");
+  const [tratamentoPorIlustracao, setTratamentoPorIlustracao] = useState("");
   //Custos ligados a impressão
 
   // Custos ligados a distribuição imposto e margem de lucro
@@ -90,7 +92,11 @@ export default function Home() {
       parseFloat(impressãoSemFoto.replace(",", ".")) *
         parseFloat(paginasSemFotos.replace(",", ".")) +
       parseFloat(impressãoComFoto.replace(",", ".")) *
-        parseFloat(paginasComFotos.replace(",", "."));
+        parseFloat(paginasComFotos.replace(",", ".")) +
+      parseFloat(fotos.replace(",", ".")) *
+        parseFloat(tratamentoPorImagem.replace(",", "."));
+    +parseFloat(ilustracoes.replace(",", ".")) *
+      parseFloat(tratamentoPorIlustracao.replace(",", "."));
 
     const totalCustoTransporte = totalCustoImpressao * transporte;
     const totalCustoDistribuicao = totalCustoImpressao * distribuicao;
@@ -457,6 +463,36 @@ export default function Home() {
                   value={impressãoComFoto}
                   onChange={(e) =>
                     setImpressãoComFoto(formatNumberInput(e.target.value))
+                  }
+                />
+              </div>
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="tratamentoPorImagem">
+                  Custo por tratamento de imagem (custo por foto)
+                </Label>
+                <Input
+                  id="tratamentoPorImagem"
+                  placeholder="Custo por tratamento de imagem (custo por foto)"
+                  type="text"
+                  value={tratamentoPorImagem}
+                  onChange={(e) =>
+                    setTratamentoPorImagem(formatNumberInput(e.target.value))
+                  }
+                />
+              </div>
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="tratamentoPorIlustracao">
+                  Custo por tratamento de ilustração (custo por ilustração)
+                </Label>
+                <Input
+                  id="tratamentoPorIlustracao"
+                  placeholder="Custo por tratamento de ilustração (custo por ilustração)"
+                  type="text"
+                  value={tratamentoPorIlustracao}
+                  onChange={(e) =>
+                    setTratamentoPorIlustracao(
+                      formatNumberInput(e.target.value)
+                    )
                   }
                 />
               </div>
