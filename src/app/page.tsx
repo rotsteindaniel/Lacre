@@ -112,6 +112,13 @@ export default function Home() {
 
     const totalCustoFinal = totalCustoComMargemDeLucro * imposto;
 
+    console.log("Custo de transporte", totalCustoTransporte);
+    console.log("Custo de distribuicao", totalCustoDistribuicao);
+    console.log(
+      "Custo Total Final Sem Margem De Lucro E Impostos",
+      custoTotalFinalSemMargemDeLucroEImpostos
+    );
+    console.log("total Custo Com Margem De Lucro", totalCustoComMargemDeLucro);
     console.log("Total Cost:", totalCustoFinal);
     alert(`Custo total R$${totalCustoFinal.toFixed(2)}`);
   };
