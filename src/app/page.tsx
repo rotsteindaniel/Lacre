@@ -512,7 +512,10 @@ export default function Home() {
             <SheetTrigger>
               <Button>Calcular</Button>
             </SheetTrigger>
-            <SheetContent side="top">
+            <SheetContent
+              side="top"
+              style={{ maxHeight: "400px", overflowY: "auto" }}
+            >
               <SheetHeader>
                 <SheetTitle>Páginas do livro, fotos e ilustrações</SheetTitle>
                 <SheetDescription>
