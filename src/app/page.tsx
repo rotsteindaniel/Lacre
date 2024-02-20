@@ -611,43 +611,72 @@ export default function Home() {
                   </SheetDescription>
                   <SheetTitle>Custos fixos</SheetTitle>
                   <SheetDescription>
-                    Capa: R$ {parseFloat(custoDaCapa.replace(",", "."))}
+                    Capa: R${" "}
+                    {parseFloat(custoDaCapa.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
-                    Coordenador: R$ {parseFloat(coordenador.replace(",", "."))}
+                    Coordenador: R${" "}
+                    {parseFloat(coordenador.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Capa e designer: R${" "}
-                    {parseFloat(capaEDesigner.replace(",", "."))}
+                    {parseFloat(capaEDesigner.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
-                    Fotógrafo: R$ {parseFloat(fotografo.replace(",", "."))}
+                    Fotógrafo: R${" "}
+                    {parseFloat(fotografo.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     IFC ISBN Cod. Barras: R${" "}
-                    {parseFloat(ifcIsbnCodBarras.replace(",", "."))}
+                    {parseFloat(ifcIsbnCodBarras.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Convite digital: R${" "}
-                    {parseFloat(conviteDigital.replace(",", "."))}
+                    {parseFloat(conviteDigital.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Banner designer: R${" "}
-                    {parseFloat(bannerDesigner.replace(",", "."))}
+                    {parseFloat(bannerDesigner.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Reels vinheta: R${" "}
-                    {parseFloat(reelsVinheta.replace(",", "."))}
+                    {parseFloat(reelsVinheta.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Primeira orelha resumo: R${" "}
-                    {parseFloat(primeiraOrelhaResumo.replace(",", "."))}
+                    {parseFloat(primeiraOrelhaResumo.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Segunda orelha mini bio: R${" "}
-                    {parseFloat(segundaOrelhaMiniBio.replace(",", "."))}
+                    {parseFloat(segundaOrelhaMiniBio.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Prefácio convidado: R${" "}
-                    {parseFloat(prefacioConvidado.replace(",", "."))}
+                    {parseFloat(prefacioConvidado.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Apresentação convidado: R${" "}
-                    {parseFloat(apresentacaoConvidado.replace(",", "."))}
+                    {parseFloat(apresentacaoConvidado.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Quarta capa texto do livro: R${" "}
-                    {parseFloat(quartaCapaTextoDoLivro.replace(",", "."))}
+                    {parseFloat(quartaCapaTextoDoLivro.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
-                    Total: R$ {totalCustosFixos}
+                    Total: R$ {totalCustosFixos.toFixed(2).replace(".", ",")}
                     <br />
                   </SheetDescription>
                   <SheetTitle>
@@ -656,20 +685,37 @@ export default function Home() {
                   </SheetTitle>
                   <SheetDescription>
                     Revisor: R${" "}
-                    {parseFloat(revisor.replace(",", ".")) * parseFloat(pages)}
+                    {(parseFloat(revisor.replace(",", ".")) * parseFloat(pages))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Copydesk: R${" "}
-                    {parseFloat(copydesk.replace(",", ".")) * parseFloat(pages)}
+                    {(
+                      parseFloat(copydesk.replace(",", ".")) * parseFloat(pages)
+                    )
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Diagramador: R${" "}
-                    {parseFloat(diagramador.replace(",", ".")) *
-                      parseFloat(pages)}
+                    {(
+                      parseFloat(diagramador.replace(",", ".")) *
+                      parseFloat(pages)
+                    )
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Diagramador com foto: R${" "}
-                    {parseFloat(diagramadorComFoto.replace(",", ".")) *
-                      parseFloat(pages)}
+                    {(
+                      parseFloat(diagramadorComFoto.replace(",", ".")) *
+                      parseFloat(pages)
+                    )
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
-                    Total: R$ {totalCustoUsandoTodasAsPaginasDeReferencia}
+                    Total: R${" "}
+                    {totalCustoUsandoTodasAsPaginasDeReferencia
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                   </SheetDescription>
                   <SheetTitle>
@@ -678,25 +724,44 @@ export default function Home() {
                   </SheetTitle>
                   <SheetDescription>
                     Impressão sem foto: R${" "}
-                    {parseFloat(impressãoSemFoto.replace(",", ".")) *
-                      parseFloat(paginasSemFotos)}
+                    {(
+                      parseFloat(impressãoSemFoto.replace(",", ".")) *
+                      parseFloat(paginasSemFotos)
+                    )
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Impressão com foto: R${" "}
-                    {parseFloat(impressãoComFoto.replace(",", ".")) *
-                      parseFloat(paginasComFotos)}
+                    {(
+                      parseFloat(impressãoComFoto.replace(",", ".")) *
+                      parseFloat(paginasComFotos)
+                    )
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Tratamento de imagem: R${" "}
-                    {parseFloat(tratamentoPorImagem.replace(",", ".")) *
-                      parseFloat(fotos)}
+                    {(
+                      parseFloat(tratamentoPorImagem.replace(",", ".")) *
+                      parseFloat(fotos)
+                    )
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Tratamento de ilustração: R${" "}
-                    {parseFloat(tratamentoPorIlustracao.replace(",", ".")) *
-                      parseFloat(ilustracoes)}
+                    {(
+                      parseFloat(tratamentoPorIlustracao.replace(",", ".")) *
+                      parseFloat(ilustracoes)
+                    )
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
-                    Total custo por livro: R$ {totalCustoImpressao}
+                    Total custo impressão por livro: R${" "}
+                    {totalCustoImpressao.toFixed(2).replace(".", ",")}
                     <br />
-                    Total custo de todos os livros: R${" "}
-                    {totalCustoImpressao * parseFloat(quantosLivros)}
+                    Total custo impressão de todos os livros: R${" "}
+                    {(totalCustoImpressao * parseFloat(quantosLivros))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                   </SheetDescription>
                   <SheetTitle>
@@ -704,25 +769,36 @@ export default function Home() {
                   </SheetTitle>
                   <SheetDescription>
                     Total distribuição (10% do valor da impressão): R${" "}
-                    {totalCustoDistribuicaoTodosOsLivros}
+                    {totalCustoDistribuicaoTodosOsLivros
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Total Transporte (15% do valor da impressão): R${" "}
-                    {totalCustoTransporteTodosOsLivros}
+                    {totalCustoTransporteTodosOsLivros
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Total sem margem de lucro e impostos: R${" "}
-                    {custoTotalFinalSemMargemDeLucroEImpostos}
+                    {custoTotalFinalSemMargemDeLucroEImpostos
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Total com margem de lucro (20%): R${" "}
-                    {totalCustoComMargemDeLucro}
+                    {totalCustoComMargemDeLucro.toFixed(2).replace(".", ",")}
                     <br />
                     Total do custo do imposto (7%): R${" "}
-                    {totalCustoFinal - totalCustoComMargemDeLucro}
+                    {(totalCustoFinal - totalCustoComMargemDeLucro)
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                     Total com margem de lucro (20%) e impostos (7%) por livro:
-                    R$ {totalCustoFinal}
+                    R$ {totalCustoFinal.toFixed(2).replace(".", ",")}
                     <br />
                     Total final de todos os livros (custo final x quantidde de
-                    livros): R$ {totalCustoFinal * parseFloat(quantosLivros)}
+                    livros): R${" "}
+                    {(totalCustoFinal * parseFloat(quantosLivros))
+                      .toFixed(2)
+                      .replace(".", ",")}
                     <br />
                   </SheetDescription>
                 </SheetHeader>
