@@ -684,7 +684,7 @@ export default function Home() {
                     Total custo por livro: R$ {totalCustoImpressao}
                     <br />
                     Total custo de todos os livros: R${" "}
-                    {totalCustoImpressao * quantosLivros}
+                    {totalCustoImpressao * parseFloat(quantosLivros)}
                     <br />
                   </SheetDescription>
                   <SheetTitle>
@@ -710,7 +710,7 @@ export default function Home() {
                     R$ {totalCustoFinal}
                     <br />
                     Total com margem de lucro (20%) e impostos (7%) por livro:
-                    R$ {totalCustoFinal * quantosLivros}
+                    R$ {totalCustoFinal * parseFloat(quantosLivros)}
                     <br />
                   </SheetDescription>
                 </SheetHeader>
