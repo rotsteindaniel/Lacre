@@ -110,6 +110,7 @@ export default function Home() {
 
   // Total do custo de impressão
   const totalCustoImpressao =
+    parseFloat(custoDaCapa.replace(",", ".")) +
     parseFloat(impressãoSemFoto.replace(",", ".")) *
       parseFloat(paginasSemFotos.replace(",", ".")) +
     parseFloat(impressãoComFoto.replace(",", ".")) *
@@ -117,24 +118,28 @@ export default function Home() {
     parseFloat(fotos.replace(",", ".")) *
       parseFloat(tratamentoPorImagem.replace(",", ".")) +
     parseFloat(ilustracoes.replace(",", ".")) *
-      parseFloat(tratamentoPorIlustracao.replace(",", ".")) +
-    parseFloat(custoDaCapa.replace(",", "."));
+      parseFloat(tratamentoPorIlustracao.replace(",", "."));
   // Total do custo de impressão
 
-  // Total do custo de distribuição e transporte
-  const totalCustoTransporte =
-    totalCustoImpressao * parseFloat(quantosLivros) * transporte;
-  const totalCustoDistribuicao =
-    totalCustoImpressao * parseFloat(quantosLivros) * distribuicao;
-  // Total do custo de distribuição e transporte
+  // Total do custo de distribuição e transporte por livro
+  const totalCustoTransporteporLivro = totalCustoImpressao * transporte;
+  const totalCustoDistribuicaoPorLivro = totalCustoImpressao * distribuicao;
+  // Total do custo de distribuição e transporte por livro
+
+  // Total do custo de distribuição e transporte todos os livros
+  const totalCustoTransporteTodosOsLivros =
+    totalCustoTransporteporLivro * parseFloat(quantosLivros);
+  const totalCustoDistribuicaoTodosOsLivros =
+    totalCustoDistribuicaoPorLivro * parseFloat(quantosLivros);
+  // Total do custo de distribuição e transporte todos os livros
 
   // Total do custo final sem margem de lucro e impostos
   const custoTotalFinalSemMargemDeLucroEImpostos =
     totalCustosFixos +
     totalCustoUsandoTodasAsPaginasDeReferencia +
     totalCustoImpressao +
-    totalCustoTransporte +
-    totalCustoDistribuicao;
+    totalCustoTransporteporLivro +
+    totalCustoDistribuicaoPorLivro;
   // Total do custo final sem margem de lucro e impostos
 
   // Total do custo final com margem de lucro e impostos
@@ -142,6 +147,9 @@ export default function Home() {
     custoTotalFinalSemMargemDeLucroEImpostos * margemDeLucro;
 
   const totalCustoFinal = totalCustoComMargemDeLucro * imposto;
+
+  const totalCustoFinalTodosOsLivros =
+    totalCustoFinal * parseFloat(quantosLivros);
 
   return (
     <>
@@ -696,10 +704,10 @@ export default function Home() {
                   </SheetTitle>
                   <SheetDescription>
                     Total distribuição (10% do valor da impressão): R${" "}
-                    {totalCustoDistribuicao}
+                    {totalCustoDistribuicaoTodosOsLivros}
                     <br />
                     Total Transporte (15% do valor da impressão): R${" "}
-                    {totalCustoTransporte}
+                    {totalCustoTransporteTodosOsLivros}
                     <br />
                     Total sem margem de lucro e impostos: R${" "}
                     {custoTotalFinalSemMargemDeLucroEImpostos}
