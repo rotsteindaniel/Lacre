@@ -709,8 +709,8 @@ export default function Home() {
                     Total com margem de lucro (20%) e impostos (7%) por livro:
                     R$ {totalCustoFinal}
                     <br />
-                    Total com margem de lucro (20%) e impostos (7%) por livro:
-                    R$ {totalCustoFinal * parseFloat(quantosLivros)}
+                    Total final de todos os livros (custo final x quantidde de
+                    livros): R$ {totalCustoFinal * parseFloat(quantosLivros)}
                     <br />
                   </SheetDescription>
                 </SheetHeader>
