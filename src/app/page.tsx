@@ -12,6 +12,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
 export default function Home() {
   // Custos fixos
   const [coordenador, setCoordenador] = useState("");
@@ -64,64 +73,56 @@ export default function Home() {
   };
   // Função para formatar números inseridos pelo usuário
 
-  const calculateCost = () => {
-    const totalCustosFixos =
-      parseFloat(coordenador.replace(",", ".")) +
-      parseFloat(capaEDesigner.replace(",", ".")) +
-      parseFloat(fotografo.replace(",", ".")) +
-      parseFloat(ifcIsbnCodBarras.replace(",", ".")) +
-      parseFloat(conviteDigital.replace(",", ".")) +
-      parseFloat(bannerDesigner.replace(",", ".")) +
-      parseFloat(reelsVinheta.replace(",", ".")) +
-      parseFloat(primeiraOrelhaResumo.replace(",", ".")) +
-      parseFloat(segundaOrelhaMiniBio.replace(",", ".")) +
-      parseFloat(prefacioConvidado.replace(",", ".")) +
-      parseFloat(apresentacaoConvidado.replace(",", ".")) +
-      parseFloat(quartaCapaTextoDoLivro.replace(",", "."));
+  const totalCustosFixos =
+    parseFloat(coordenador.replace(",", ".")) +
+    parseFloat(capaEDesigner.replace(",", ".")) +
+    parseFloat(fotografo.replace(",", ".")) +
+    parseFloat(ifcIsbnCodBarras.replace(",", ".")) +
+    parseFloat(conviteDigital.replace(",", ".")) +
+    parseFloat(bannerDesigner.replace(",", ".")) +
+    parseFloat(reelsVinheta.replace(",", ".")) +
+    parseFloat(primeiraOrelhaResumo.replace(",", ".")) +
+    parseFloat(segundaOrelhaMiniBio.replace(",", ".")) +
+    parseFloat(prefacioConvidado.replace(",", ".")) +
+    parseFloat(apresentacaoConvidado.replace(",", ".")) +
+    parseFloat(quartaCapaTextoDoLivro.replace(",", "."));
 
-    const totalCustoPorPagina =
-      parseFloat(revisor.replace(",", ".")) +
-      parseFloat(diagramador.replace(",", ".")) +
-      parseFloat(diagramadorComFoto.replace(",", ".")) +
-      parseFloat(copydesk.replace(",", "."));
+  const totalCustoPorPagina =
+    parseFloat(revisor.replace(",", ".")) +
+    parseFloat(diagramador.replace(",", ".")) +
+    parseFloat(diagramadorComFoto.replace(",", ".")) +
+    parseFloat(copydesk.replace(",", "."));
 
-    const totalCustoUsandoTodasAsPaginasDeReferencia =
-      totalCustoPorPagina * parseFloat(pages);
+  const totalCustoUsandoTodasAsPaginasDeReferencia =
+    totalCustoPorPagina * parseFloat(pages);
 
-    const totalCustoImpressao =
-      parseFloat(impressãoSemFoto.replace(",", ".")) *
-        parseFloat(paginasSemFotos.replace(",", ".")) +
-      parseFloat(impressãoComFoto.replace(",", ".")) *
-        parseFloat(paginasComFotos.replace(",", ".")) +
-      parseFloat(fotos.replace(",", ".")) *
-        parseFloat(tratamentoPorImagem.replace(",", ".")) +
-      parseFloat(ilustracoes.replace(",", ".")) *
-        parseFloat(tratamentoPorIlustracao.replace(",", "."));
+  const totalCustoImpressao =
+    parseFloat(impressãoSemFoto.replace(",", ".")) *
+      parseFloat(paginasSemFotos.replace(",", ".")) +
+    parseFloat(impressãoComFoto.replace(",", ".")) *
+      parseFloat(paginasComFotos.replace(",", ".")) +
+    parseFloat(fotos.replace(",", ".")) *
+      parseFloat(tratamentoPorImagem.replace(",", ".")) +
+    parseFloat(ilustracoes.replace(",", ".")) *
+      parseFloat(tratamentoPorIlustracao.replace(",", "."));
 
-    const totalCustoTransporte = totalCustoImpressao * transporte;
-    const totalCustoDistribuicao = totalCustoImpressao * distribuicao;
-    const custoTotalFinalSemMargemDeLucroEImpostos =
-      totalCustosFixos +
-      totalCustoUsandoTodasAsPaginasDeReferencia +
-      totalCustoImpressao +
-      totalCustoTransporte +
-      totalCustoDistribuicao;
+  const totalCustoTransporte = totalCustoImpressao * transporte;
+  const totalCustoDistribuicao = totalCustoImpressao * distribuicao;
+  const custoTotalFinalSemMargemDeLucroEImpostos =
+    totalCustosFixos +
+    totalCustoUsandoTodasAsPaginasDeReferencia +
+    totalCustoImpressao +
+    totalCustoTransporte +
+    totalCustoDistribuicao;
 
-    const totalCustoComMargemDeLucro =
-      custoTotalFinalSemMargemDeLucroEImpostos * margemDeLucro;
+  const totalCustoComMargemDeLucro =
+    custoTotalFinalSemMargemDeLucroEImpostos * margemDeLucro;
 
-    const totalCustoFinal = totalCustoComMargemDeLucro * imposto;
+  const totalCustoFinal = totalCustoComMargemDeLucro * imposto;
 
-    console.log("Custo de transporte", totalCustoTransporte);
-    console.log("Custo de distribuicao", totalCustoDistribuicao);
-    console.log(
-      "Custo Total Final Sem Margem De Lucro E Impostos",
-      custoTotalFinalSemMargemDeLucroEImpostos
-    );
-    console.log("total Custo Com Margem De Lucro", totalCustoComMargemDeLucro);
-    console.log("Total Cost:", totalCustoFinal);
-    alert(`Custo total R$${totalCustoFinal.toFixed(2)}`);
-  };
+  // const calculateCost = () => {
+  //   alert(`Custo total R$${totalCustoFinal.toFixed(2)}`);
+  // };
 
   return (
     <>
@@ -507,7 +508,131 @@ export default function Home() {
           </form>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button onClick={calculateCost}>Calcular</Button>
+          <Sheet>
+            <SheetTrigger>
+              <Button>Calcular</Button>
+            </SheetTrigger>
+            <SheetContent side="top">
+              <SheetHeader>
+                <SheetTitle>Páginas do livro, fotos e ilustrações</SheetTitle>
+                <SheetDescription>
+                  Páginas totais do livro: {pages}
+                  <br />
+                  Páginas sem foto do livro: {paginasSemFotos}
+                  <br />
+                  Páginas com foto do livro: {paginasComFotos}
+                  <br />
+                  Quantas fotos tem o livro: {fotos}
+                  <br />
+                  Quantas ilustrações tem o livro: {ilustracoes}
+                  <br />
+                </SheetDescription>
+                <SheetTitle>Custos fixos</SheetTitle>
+                <SheetDescription>
+                  Coordenador: R$ {parseFloat(coordenador.replace(",", "."))}
+                  <br />
+                  Capa e designer: R${" "}
+                  {parseFloat(capaEDesigner.replace(",", "."))}
+                  <br />
+                  Fotógrafo: R$ {parseFloat(fotografo.replace(",", "."))}
+                  <br />
+                  IFC ISBN Cod. Barras: R${" "}
+                  {parseFloat(ifcIsbnCodBarras.replace(",", "."))}
+                  <br />
+                  Convite digital: R${" "}
+                  {parseFloat(conviteDigital.replace(",", "."))}
+                  <br />
+                  Banner designer: R${" "}
+                  {parseFloat(bannerDesigner.replace(",", "."))}
+                  <br />
+                  Reels vinheta: R$ {parseFloat(reelsVinheta.replace(",", "."))}
+                  <br />
+                  Primeira orelha resumo: R${" "}
+                  {parseFloat(primeiraOrelhaResumo.replace(",", "."))}
+                  <br />
+                  Segunda orelha mini bio: R${" "}
+                  {parseFloat(segundaOrelhaMiniBio.replace(",", "."))}
+                  <br />
+                  Prefácio convidado: R${" "}
+                  {parseFloat(prefacioConvidado.replace(",", "."))}
+                  <br />
+                  Apresentação convidado: R${" "}
+                  {parseFloat(apresentacaoConvidado.replace(",", "."))}
+                  <br />
+                  Quarta capa texto do livro: R${" "}
+                  {parseFloat(quartaCapaTextoDoLivro.replace(",", "."))}
+                  <br />
+                  Total: R$ {totalCustosFixos}
+                  <br />
+                </SheetDescription>
+                <SheetTitle>
+                  Custo total do Revisor, Copydesk, Diagramador e Diagramador
+                  com foto
+                </SheetTitle>
+                <SheetDescription>
+                  Revisor: R${" "}
+                  {parseFloat(revisor.replace(",", ".")) * parseFloat(pages)}
+                  <br />
+                  Copydesk: R${" "}
+                  {parseFloat(copydesk.replace(",", ".")) * parseFloat(pages)}
+                  <br />
+                  Diagramador: R${" "}
+                  {parseFloat(diagramador.replace(",", ".")) *
+                    parseFloat(pages)}
+                  <br />
+                  Diagramador com foto: R${" "}
+                  {parseFloat(diagramadorComFoto.replace(",", ".")) *
+                    parseFloat(pages)}
+                  <br />
+                  Total: R$ {totalCustoUsandoTodasAsPaginasDeReferencia}
+                  <br />
+                </SheetDescription>
+                <SheetTitle>
+                  Custo total da impressão sem foto, da impressão com foto, do
+                  tratamento de imagem e tratamento de ilustração
+                </SheetTitle>
+                <SheetDescription>
+                  Impressão sem foto: R${" "}
+                  {parseFloat(impressãoSemFoto.replace(",", ".")) *
+                    parseFloat(paginasSemFotos)}
+                  <br />
+                  Impressão com foto: R${" "}
+                  {parseFloat(impressãoComFoto.replace(",", ".")) *
+                    parseFloat(paginasComFotos)}
+                  <br />
+                  Tratamento de imagem: R${" "}
+                  {parseFloat(tratamentoPorImagem.replace(",", ".")) *
+                    parseFloat(fotos)}
+                  <br />
+                  Tratamento de ilustração: R${" "}
+                  {parseFloat(tratamentoPorIlustracao.replace(",", ".")) *
+                    parseFloat(ilustracoes)}
+                  <br />
+                  Total: R$ {totalCustoImpressao}
+                  <br />
+                </SheetDescription>
+                <SheetTitle>
+                  Custo total de distribuição, transporte, e totais finais
+                </SheetTitle>
+                <SheetDescription>
+                  Total distribuição: R$ {totalCustoDistribuicao}
+                  <br />
+                  Total Transporte: R$ {totalCustoTransporte}
+                  <br />
+                  Total sem margem de lucro e impostos: R${" "}
+                  {custoTotalFinalSemMargemDeLucroEImpostos}
+                  <br />
+                  Total com margem de lucro (20%): R${" "}
+                  {totalCustoComMargemDeLucro}
+                  <br />
+                  Total com margem de lucro (20%) e impostos (7%): R${" "}
+                  {totalCustoFinal}
+                  <br />
+                </SheetDescription>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
+          {/* <Button onClick={calculateCost}>Calcular</Button> */}
         </CardFooter>
       </Card>
     </>
