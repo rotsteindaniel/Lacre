@@ -796,9 +796,7 @@ export default function Home() {
                     <br />
                     Total final de todos os livros (custo final x quantidde de
                     livros): R${" "}
-                    {(totalCustoFinal * parseFloat(quantosLivros))
-                      .toFixed(2)
-                      .replace(".", ",")}
+                    {totalCustoFinalTodosOsLivros.toFixed(2).replace(".", ",")}
                     <br />
                   </SheetDescription>
                 </SheetHeader>
