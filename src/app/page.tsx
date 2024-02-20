@@ -342,6 +342,20 @@ export default function Home() {
             <form>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="quantosLivros">
+                    Quantas livros serão impressos?
+                  </Label>
+                  <Input
+                    id="quantosLivros"
+                    placeholder="Quantas livros serão impressos?"
+                    type="text"
+                    value={quantosLivros}
+                    onChange={(e) =>
+                      setQuantosLivros(formatNumberInput(e.target.value))
+                    }
+                  />
+                </div>
+                <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="pages">
                     Quantas paginas terá o livro? (Total)
                   </Label>
