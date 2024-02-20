@@ -73,6 +73,7 @@ export default function Home() {
   };
   // Função para formatar números inseridos pelo usuário
 
+  // Somatório de todos os custos fixos
   const totalCustosFixos =
     parseFloat(coordenador.replace(",", ".")) +
     parseFloat(capaEDesigner.replace(",", ".")) +
@@ -86,16 +87,22 @@ export default function Home() {
     parseFloat(prefacioConvidado.replace(",", ".")) +
     parseFloat(apresentacaoConvidado.replace(",", ".")) +
     parseFloat(quartaCapaTextoDoLivro.replace(",", "."));
+  // Somatório de todos os custos fixos
 
+  // Somatório de todos os custos por página
   const totalCustoPorPagina =
     parseFloat(revisor.replace(",", ".")) +
     parseFloat(diagramador.replace(",", ".")) +
     parseFloat(diagramadorComFoto.replace(",", ".")) +
     parseFloat(copydesk.replace(",", "."));
+  // Somatório de todos os custos por página
 
+  // Total do custo que usam todas as página de referência
   const totalCustoUsandoTodasAsPaginasDeReferencia =
     totalCustoPorPagina * parseFloat(pages);
+  // Total do custo que usam todas as página de referência
 
+  // Total do custo de impressão
   const totalCustoImpressao =
     parseFloat(impressãoSemFoto.replace(",", ".")) *
       parseFloat(paginasSemFotos.replace(",", ".")) +
@@ -105,27 +112,31 @@ export default function Home() {
       parseFloat(tratamentoPorImagem.replace(",", ".")) +
     parseFloat(ilustracoes.replace(",", ".")) *
       parseFloat(tratamentoPorIlustracao.replace(",", "."));
+  // Total do custo de impressão
 
+  // Total do custo de distribuição e transporte
   const totalCustoTransporte = totalCustoImpressao * transporte;
   const totalCustoDistribuicao = totalCustoImpressao * distribuicao;
+  // Total do custo de distribuição e transporte
+
+  // Total do custo final sem margem de lucro e impostos
   const custoTotalFinalSemMargemDeLucroEImpostos =
     totalCustosFixos +
     totalCustoUsandoTodasAsPaginasDeReferencia +
     totalCustoImpressao +
     totalCustoTransporte +
     totalCustoDistribuicao;
+  // Total do custo final sem margem de lucro e impostos
 
+  // Total do custo final com margem de lucro e impostos
   const totalCustoComMargemDeLucro =
     custoTotalFinalSemMargemDeLucroEImpostos * margemDeLucro;
 
   const totalCustoFinal = totalCustoComMargemDeLucro * imposto;
 
-  // const calculateCost = () => {
-  //   alert(`Custo total R$${totalCustoFinal.toFixed(2)}`);
-  // };
-
   return (
     <>
+      {/* Form dos custos fixos */}
       <Card className="w-[350px] mx-2">
         <CardHeader>
           <CardTitle>Custos fixos adicionados ao final</CardTitle>
@@ -290,6 +301,9 @@ export default function Home() {
           </form>
         </CardContent>
       </Card>
+      {/* Form dos custos fixos */}
+
+      {/* Form número de páginas e inputs usados de referência nos cálculos */}
       <Card className="w-[350px] mx-2">
         <CardHeader>
           <CardTitle>
@@ -370,6 +384,9 @@ export default function Home() {
           </form>
         </CardContent>
       </Card>
+      {/* Form número de páginas e inputs usados de referência nos cálculos */}
+
+      {/* Form dos custos ligados a todas as páginas dos livros */}
       <Card className="w-[350px] mx-2">
         <CardHeader>
           <CardTitle>Custos ligados a todas as páginas do livro</CardTitle>
@@ -436,7 +453,11 @@ export default function Home() {
           </form>
         </CardContent>
       </Card>
+      {/* Form dos custos ligados a todas as páginas dos livros */}
+
+      {/* Form dos custos ligados a outros inputs (Dentro temos também o CardFooter que guarda o modal com os resultados finais) */}
       <Card className="w-[350px]">
+        {/* Form dos custos ligados a outros inputs  */}
         <CardHeader>
           <CardTitle>Custos ligados a outros inputs</CardTitle>
           <CardDescription>
@@ -507,6 +528,9 @@ export default function Home() {
             </div>
           </form>
         </CardContent>
+        {/* Form dos custos ligados a outros inputs  */}
+
+        {/* CardFooter com o botão calcular que abre um modal de cima para baixo com os valores finais, cálculos e resultados */}
         <CardFooter className="flex justify-between">
           <Sheet>
             <SheetTrigger>
@@ -639,7 +663,9 @@ export default function Home() {
           </Sheet>
           {/* <Button onClick={calculateCost}>Calcular</Button> */}
         </CardFooter>
+        {/* CardFooter com o botão calcular que abre um modal de cima para baixo com os valores finais, cálculos e resultados */}
       </Card>
+      {/* Form dos custos ligados a outros inputs (Dentro temos também o CardFooter que guarda o modal com os resultados finais) */}
     </>
   );
 }
