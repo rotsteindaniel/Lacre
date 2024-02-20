@@ -149,7 +149,8 @@ export default function Home() {
   const totalCustoFinal = totalCustoComMargemDeLucro * imposto;
 
   const totalCustoFinalTodosOsLivros =
-    totalCustoFinal * parseFloat(quantosLivros);
+    (totalCustoFinal - totalCustosFixos) * parseFloat(quantosLivros) +
+    totalCustosFixos;
 
   return (
     <>
