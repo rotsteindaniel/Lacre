@@ -514,7 +514,7 @@ export default function Home() {
             </SheetTrigger>
             <SheetContent
               side="top"
-              style={{ maxHeight: "400px", overflowY: "auto" }}
+              style={{ maxHeight: "100vh", overflowY: "auto" }}
             >
               <SheetHeader>
                 <SheetTitle>Páginas do livro, fotos e ilustrações</SheetTitle>
