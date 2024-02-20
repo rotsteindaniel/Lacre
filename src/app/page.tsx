@@ -724,34 +724,30 @@ export default function Home() {
                   </SheetTitle>
                   <SheetDescription>
                     Impressão sem foto: R${" "}
-                    {(
-                      parseFloat(impressãoSemFoto.replace(",", ".")) *
-                      parseFloat(paginasSemFotos)
-                    )
+                    {parseFloat(impressãoSemFoto.replace(",", "."))
+                      // *
+                      // parseFloat(paginasSemFotos)
                       .toFixed(2)
                       .replace(".", ",")}
                     <br />
                     Impressão com foto: R${" "}
-                    {(
-                      parseFloat(impressãoComFoto.replace(",", ".")) *
-                      parseFloat(paginasComFotos)
-                    )
+                    {parseFloat(impressãoComFoto.replace(",", "."))
+                      // *
+                      // parseFloat(paginasComFotos)
                       .toFixed(2)
                       .replace(".", ",")}
                     <br />
                     Tratamento de imagem: R${" "}
-                    {(
-                      parseFloat(tratamentoPorImagem.replace(",", ".")) *
-                      parseFloat(fotos)
-                    )
+                    {parseFloat(tratamentoPorImagem.replace(",", "."))
+                      // *
+                      // parseFloat(fotos)
                       .toFixed(2)
                       .replace(".", ",")}
                     <br />
                     Tratamento de ilustração: R${" "}
-                    {(
-                      parseFloat(tratamentoPorIlustracao.replace(",", ".")) *
-                      parseFloat(ilustracoes)
-                    )
+                    {parseFloat(tratamentoPorIlustracao.replace(",", "."))
+                      // *
+                      // parseFloat(ilustracoes)
                       .toFixed(2)
                       .replace(".", ",")}
                     <br />
