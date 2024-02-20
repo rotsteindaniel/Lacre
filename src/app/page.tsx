@@ -80,6 +80,7 @@ export default function Home() {
 
   // Somatório de todos os custos fixos
   const totalCustosFixos =
+    parseFloat(custoDaCapa.replace(",", ".")) +
     parseFloat(coordenador.replace(",", ".")) +
     parseFloat(capaEDesigner.replace(",", ".")) +
     parseFloat(fotografo.replace(",", ".")) +
@@ -91,8 +92,7 @@ export default function Home() {
     parseFloat(segundaOrelhaMiniBio.replace(",", ".")) +
     parseFloat(prefacioConvidado.replace(",", ".")) +
     parseFloat(apresentacaoConvidado.replace(",", ".")) +
-    parseFloat(quartaCapaTextoDoLivro.replace(",", ".")) +
-    parseFloat(custoDaCapa.replace(",", "."));
+    parseFloat(quartaCapaTextoDoLivro.replace(",", "."));
   // Somatório de todos os custos fixos
 
   // Somatório de todos os custos por página
@@ -586,6 +586,8 @@ export default function Home() {
                 <SheetHeader>
                   <SheetTitle>Páginas do livro, fotos e ilustrações</SheetTitle>
                   <SheetDescription>
+                    Quantos livros serão impressos: {quantosLivros}
+                    <br />
                     Páginas totais do livro: {pages}
                     <br />
                     Páginas sem foto do livro: {paginasSemFotos}
