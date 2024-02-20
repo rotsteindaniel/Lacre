@@ -22,7 +22,12 @@ import {
 } from "@/components/ui/sheet";
 
 export default function Home() {
+  // Quantos livros vão ser impressos
+  const [quantosLivros, setQuantosLivros] = useState(0);
+  // Quantos livros vão ser impressos
+
   // Custos fixos
+  const [custoDaCapa, setCustoDaCapa] = useState("");
   const [coordenador, setCoordenador] = useState("");
   const [capaEDesigner, setCapaEDesigner] = useState("");
   const [fotografo, setFotografo] = useState("");
@@ -86,7 +91,8 @@ export default function Home() {
     parseFloat(segundaOrelhaMiniBio.replace(",", ".")) +
     parseFloat(prefacioConvidado.replace(",", ".")) +
     parseFloat(apresentacaoConvidado.replace(",", ".")) +
-    parseFloat(quartaCapaTextoDoLivro.replace(",", "."));
+    parseFloat(quartaCapaTextoDoLivro.replace(",", ".")) +
+    parseFloat(custoDaCapa.replace(",", "."));
   // Somatório de todos os custos fixos
 
   // Somatório de todos os custos por página
@@ -111,7 +117,8 @@ export default function Home() {
     parseFloat(fotos.replace(",", ".")) *
       parseFloat(tratamentoPorImagem.replace(",", ".")) +
     parseFloat(ilustracoes.replace(",", ".")) *
-      parseFloat(tratamentoPorIlustracao.replace(",", "."));
+      parseFloat(tratamentoPorIlustracao.replace(",", ".")) +
+    parseFloat(custoDaCapa.replace(",", "."));
   // Total do custo de impressão
 
   // Total do custo de distribuição e transporte
@@ -146,6 +153,18 @@ export default function Home() {
           <CardContent>
             <form>
               <div className="grid w-full items-center gap-4">
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="custoDaCapa">Custo da Capa</Label>
+                  <Input
+                    id="custoDaCapa"
+                    placeholder="Custo da capa"
+                    type="text"
+                    value={custoDaCapa}
+                    onChange={(e) =>
+                      setCustoDaCapa(formatNumberInput(e.target.value))
+                    }
+                  />
+                </div>
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="coordenador">Coordenador</Label>
                   <Input
@@ -566,6 +585,8 @@ export default function Home() {
                   </SheetDescription>
                   <SheetTitle>Custos fixos</SheetTitle>
                   <SheetDescription>
+                    Capa: R$ {parseFloat(custoDaCapa.replace(",", "."))}
+                    <br />
                     Coordenador: R$ {parseFloat(coordenador.replace(",", "."))}
                     <br />
                     Capa e designer: R${" "}
@@ -646,7 +667,10 @@ export default function Home() {
                     {parseFloat(tratamentoPorIlustracao.replace(",", ".")) *
                       parseFloat(ilustracoes)}
                     <br />
-                    Total: R$ {totalCustoImpressao}
+                    Total custo por livro: R$ {totalCustoImpressao}
+                    <br />
+                    Total custo de todos os livros: R${" "}
+                    {totalCustoImpressao * quantosLivros}
                     <br />
                   </SheetDescription>
                   <SheetTitle>
@@ -665,8 +689,14 @@ export default function Home() {
                     Total com margem de lucro (20%): R${" "}
                     {totalCustoComMargemDeLucro}
                     <br />
-                    Total com margem de lucro (20%) e impostos (7%): R${" "}
-                    {totalCustoFinal}
+                    Total do custo do imposto (7%): R${" "}
+                    {totalCustoFinal - totalCustoComMargemDeLucro}
+                    <br />
+                    Total com margem de lucro (20%) e impostos (7%) por livro:
+                    R$ {totalCustoFinal}
+                    <br />
+                    Total com margem de lucro (20%) e impostos (7%) por livro:
+                    R$ {totalCustoFinal * quantosLivros}
                     <br />
                   </SheetDescription>
                 </SheetHeader>
@@ -680,3 +710,9 @@ export default function Home() {
     </>
   );
 }
+
+// adicionar input quantos livros vão ser impressos (colocar resultado de fazer um livro) e valor final (x livros = x valor)
+
+// adicionar custo de capa (novo input) (no final da impressão R$ 2,30) FEITO
+
+// separar o custo de imposto FEITO
