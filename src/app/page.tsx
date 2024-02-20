@@ -23,7 +23,7 @@ import {
 
 export default function Home() {
   // Quantos livros vão ser impressos
-  const [quantosLivros, setQuantosLivros] = useState(0);
+  const [quantosLivros, setQuantosLivros] = useState("");
   // Quantos livros vão ser impressos
 
   // Custos fixos
@@ -725,7 +725,7 @@ export default function Home() {
   );
 }
 
-// adicionar input quantos livros vão ser impressos (colocar resultado de fazer um livro) e valor final (x livros = x valor)
+// adicionar input quantos livros vão ser impressos (colocar resultado de fazer um livro) e valor final (x livros = x valor) FEITO
 
 // adicionar custo de capa (novo input) (no final da impressão R$ 2,30) FEITO
 
