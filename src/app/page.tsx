@@ -661,7 +661,6 @@ export default function Home() {
               </SheetHeader>
             </SheetContent>
           </Sheet>
-          {/* <Button onClick={calculateCost}>Calcular</Button> */}
         </CardFooter>
         {/* CardFooter com o botão calcular que abre um modal de cima para baixo com os valores finais, cálculos e resultados */}
       </Card>
