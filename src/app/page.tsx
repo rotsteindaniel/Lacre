@@ -122,8 +122,10 @@ export default function Home() {
   // Total do custo de impressão
 
   // Total do custo de distribuição e transporte
-  const totalCustoTransporte = totalCustoImpressao * transporte;
-  const totalCustoDistribuicao = totalCustoImpressao * distribuicao;
+  const totalCustoTransporte =
+    totalCustoImpressao * parseFloat(quantosLivros) * transporte;
+  const totalCustoDistribuicao =
+    totalCustoImpressao * parseFloat(quantosLivros) * distribuicao;
   // Total do custo de distribuição e transporte
 
   // Total do custo final sem margem de lucro e impostos
