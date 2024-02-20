@@ -615,9 +615,11 @@ export default function Home() {
                   Custo total de distribuição, transporte, e totais finais
                 </SheetTitle>
                 <SheetDescription>
-                  Total distribuição: R$ {totalCustoDistribuicao}
+                  Total distribuição (10% do valor da impressão): R${" "}
+                  {totalCustoDistribuicao}
                   <br />
-                  Total Transporte: R$ {totalCustoTransporte}
+                  Total Transporte (15% do valor da impressão): R${" "}
+                  {totalCustoTransporte}
                   <br />
                   Total sem margem de lucro e impostos: R${" "}
                   {custoTotalFinalSemMargemDeLucroEImpostos}
