@@ -807,9 +807,3 @@ export default function Home() {
     </>
   );
 }
-
-// adicionar input quantos livros vão ser impressos (colocar resultado de fazer um livro) e valor final (x livros = x valor) FEITO
-
-// adicionar custo de capa (novo input) (no final da impressão R$ 2,30) FEITO
-
-// separar o custo de imposto FEITO
