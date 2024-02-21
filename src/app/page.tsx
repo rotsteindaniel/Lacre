@@ -67,8 +67,8 @@ export default function Home() {
   // Custos ligados a distribuição imposto e margem de lucro
   const [transporte, setTransporte] = useState(0.15);
   const [distribuicao, setDistribuicao] = useState(0.1);
-  const [margemDeLucro, setMargemDeLucro] = useState(1.2);
-  const [imposto, setImposto] = useState(1.07);
+  const [margemDeLucro, setMargemDeLucro] = useState(0.2);
+  const [imposto, setImposto] = useState(0.07);
   // Custos ligados a distribuição imposto e margem de lucro
 
   // Função para formatar números inseridos pelo usuário
@@ -78,7 +78,7 @@ export default function Home() {
   };
   // Função para formatar números inseridos pelo usuário
 
-  // Somatório de todos os custos fixos
+  // Somatório de todos os custos fixos SOMADOS AO FINAL A TODOS OS LIVROS
   const totalCustosFixos =
     parseFloat(custoDaCapa.replace(",", ".")) +
     parseFloat(coordenador.replace(",", ".")) +
@@ -93,7 +93,7 @@ export default function Home() {
     parseFloat(prefacioConvidado.replace(",", ".")) +
     parseFloat(apresentacaoConvidado.replace(",", ".")) +
     parseFloat(quartaCapaTextoDoLivro.replace(",", "."));
-  // Somatório de todos os custos fixos
+  // Somatório de todos os custos fixos SOMADOS AO FINAL A TODOS OS LIVROS
 
   // Somatório de todos os custos por página
   const totalCustoPorPagina =
@@ -103,54 +103,71 @@ export default function Home() {
     parseFloat(copydesk.replace(",", "."));
   // Somatório de todos os custos por página
 
-  // Total do custo que usam todas as página de referência
-  const totalCustoUsandoTodasAsPaginasDeReferencia =
+  // Total do custo de um livro que usam todas as página de referência UM LIVRO
+  const totalCustoRevisorDiagramadorDiagramadorComFotoCopydeskUmLivro =
     totalCustoPorPagina * parseFloat(pages);
-  // Total do custo que usam todas as página de referência
+  // Total do custo de um livro que usam todas as página de referência UM LIVRO
 
-  // Total do custo de impressão
-  const totalCustoImpressao =
-    parseFloat(custoDaCapa.replace(",", ".")) +
-    parseFloat(impressãoSemFoto.replace(",", ".")) *
-      parseFloat(paginasSemFotos.replace(",", ".")) +
-    parseFloat(impressãoComFoto.replace(",", ".")) *
-      parseFloat(paginasComFotos.replace(",", ".")) +
+  // Total do custo de impressão TODOS OS LIVROS
+  const totalCustoImpressaoTodosOsLivros =
+    (parseFloat(custoDaCapa.replace(",", ".")) +
+      parseFloat(impressãoSemFoto.replace(",", ".")) *
+        parseFloat(paginasSemFotos.replace(",", ".")) +
+      parseFloat(impressãoComFoto.replace(",", ".")) *
+        parseFloat(paginasComFotos.replace(",", "."))) *
+    parseFloat(quantosLivros);
+  // Total do custo de impressão TODOS OS LIVROS
+
+  // Total do custo de fotos e ilustrações UM LIVRO
+  const totalCustoFotosEIlustraçõesUmLivro =
     parseFloat(fotos.replace(",", ".")) *
       parseFloat(tratamentoPorImagem.replace(",", ".")) +
     parseFloat(ilustracoes.replace(",", ".")) *
       parseFloat(tratamentoPorIlustracao.replace(",", "."));
-  // Total do custo de impressão
+  // Total do custo de fotos e ilustrações UM LIVRO
 
-  // Total do custo de distribuição e transporte por livro
-  const totalCustoTransporteporLivro = totalCustoImpressao * transporte;
-  const totalCustoDistribuicaoPorLivro = totalCustoImpressao * distribuicao;
-  // Total do custo de distribuição e transporte por livro
-
-  // Total do custo de distribuição e transporte todos os livros
+  // Total do custo de transporte de TODOS OS LIVROS
   const totalCustoTransporteTodosOsLivros =
-    totalCustoTransporteporLivro * parseFloat(quantosLivros);
+    totalCustoImpressaoTodosOsLivros * transporte;
+  // Total do custo de transporte de TODOS OS LIVROS
+
+  // Total do custo de distribuição de TODOS OS LIVROS
   const totalCustoDistribuicaoTodosOsLivros =
-    totalCustoDistribuicaoPorLivro * parseFloat(quantosLivros);
-  // Total do custo de distribuição e transporte todos os livros
+    totalCustoImpressaoTodosOsLivros * distribuicao;
+  // Total do custo de distribuição TODOS OS LIVROS
 
-  // Total do custo final sem margem de lucro e impostos
-  const custoTotalFinalSemMargemDeLucroEImpostos =
+  // Total do custo final sem margem de lucro, impostos TODOS OS LIVROS
+  const totalCustoSemMargemDeLucroEImpostosTodosOsLivros =
     totalCustosFixos +
-    totalCustoUsandoTodasAsPaginasDeReferencia +
-    totalCustoImpressao +
-    totalCustoTransporteporLivro +
-    totalCustoDistribuicaoPorLivro;
-  // Total do custo final sem margem de lucro e impostos
+    totalCustoRevisorDiagramadorDiagramadorComFotoCopydeskUmLivro +
+    totalCustoFotosEIlustraçõesUmLivro +
+    totalCustoImpressaoTodosOsLivros +
+    totalCustoTransporteTodosOsLivros +
+    totalCustoDistribuicaoTodosOsLivros;
+  // Total do custo final sem margem de lucro, impostos TODOS OS LIVROS
 
-  // Total do custo final com margem de lucro e impostos
-  const totalCustoComMargemDeLucro =
-    custoTotalFinalSemMargemDeLucroEImpostos * margemDeLucro;
+  // Imposto TODOS OS LIVROS
+  const impostoTodosOsLivros =
+    totalCustoSemMargemDeLucroEImpostosTodosOsLivros * imposto;
+  // Imposto TODOS OS LIVROS
 
-  const totalCustoFinal = totalCustoComMargemDeLucro * imposto;
+  // Margem de lucro TODOS OS LIVROS
+  const margemDeLucroTodosOsLivros =
+    (totalCustoSemMargemDeLucroEImpostosTodosOsLivros + impostoTodosOsLivros) *
+    margemDeLucro;
+  // Margem de lucro TODOS OS LIVROS
 
+  // Custo final TODOS OS LIVROS
   const totalCustoFinalTodosOsLivros =
-    (totalCustoFinal - totalCustosFixos) * parseFloat(quantosLivros) +
-    totalCustosFixos;
+    totalCustoSemMargemDeLucroEImpostosTodosOsLivros +
+    impostoTodosOsLivros +
+    margemDeLucroTodosOsLivros;
+  // Custo final TODOS OS LIVROS
+
+  // Custo final UM LIVRO
+  const totalCustoFinalUmLivro =
+    totalCustoFinalTodosOsLivros / parseFloat(quantosLivros);
+  // Custo final UM LIVRO
 
   return (
     <>
