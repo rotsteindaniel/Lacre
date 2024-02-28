@@ -27,7 +27,6 @@ export default function Home() {
   // Quantos livros vão ser impressos
 
   // Custos fixos
-  const [custoDaCapa, setCustoDaCapa] = useState("");
   const [coordenador, setCoordenador] = useState("");
   const [capaEDesigner, setCapaEDesigner] = useState("");
   const [fotografo, setFotografo] = useState("");
@@ -43,7 +42,9 @@ export default function Home() {
   // Custos fixos
 
   // Páginas do livro
-  const [pages, setPages] = useState("");
+  const [custoDaCapa, setCustoDaCapa] = useState("");
+  const [paginas, setPaginas] = useState("");
+  const [laudas, setLaudas] = useState("");
   const [paginasSemFotos, setPaginasSemFotos] = useState("");
   const [paginasComFotos, setPaginasComFotos] = useState("");
   const [fotos, setFotos] = useState("");
@@ -55,13 +56,13 @@ export default function Home() {
   const [copydesk, setCopydesk] = useState("");
   const [diagramador, setDiagramador] = useState("");
   const [diagramadorComFoto, setDiagramadorComFoto] = useState("");
+  const [tratamentoPorImagem, setTratamentoPorImagem] = useState("");
+  const [tratamentoPorIlustracao, setTratamentoPorIlustracao] = useState("");
   // Custos por página
 
   //Custos ligados a impressão
   const [impressãoSemFoto, setImpressãoSemFoto] = useState("");
   const [impressãoComFoto, setImpressãoComFoto] = useState("");
-  const [tratamentoPorImagem, setTratamentoPorImagem] = useState("");
-  const [tratamentoPorIlustracao, setTratamentoPorIlustracao] = useState("");
   //Custos ligados a impressão
 
   // Custos ligados a distribuição imposto e margem de lucro
@@ -80,7 +81,6 @@ export default function Home() {
 
   // Somatório de todos os custos fixos SOMADOS AO FINAL A TODOS OS LIVROS
   const totalCustosFixos =
-    parseFloat(custoDaCapa.replace(",", ".")) +
     parseFloat(coordenador.replace(",", ".")) +
     parseFloat(capaEDesigner.replace(",", ".")) +
     parseFloat(fotografo.replace(",", ".")) +
@@ -95,28 +95,18 @@ export default function Home() {
     parseFloat(quartaCapaTextoDoLivro.replace(",", "."));
   // Somatório de todos os custos fixos SOMADOS AO FINAL A TODOS OS LIVROS
 
-  // Somatório de todos os custos por página
-  const totalCustoPorPagina =
+  // Somatório de todos os custos por lauda UM LIVRO
+  const totalCustoPorLauda =
     parseFloat(revisor.replace(",", ".")) +
     parseFloat(diagramador.replace(",", ".")) +
     parseFloat(diagramadorComFoto.replace(",", ".")) +
     parseFloat(copydesk.replace(",", "."));
-  // Somatório de todos os custos por página
+  // Somatório de todos os custos por lauda UM LIVRO
 
-  // Total do custo de um livro que usam todas as página de referência UM LIVRO
+  // Total do custo de um livro que usam todas as laudas de referência UM LIVRO
   const totalCustoRevisorDiagramadorDiagramadorComFotoCopydeskUmLivro =
-    totalCustoPorPagina * parseFloat(pages);
-  // Total do custo de um livro que usam todas as página de referência UM LIVRO
-
-  // Total do custo de impressão TODOS OS LIVROS
-  const totalCustoImpressaoTodosOsLivros =
-    (parseFloat(custoDaCapa.replace(",", ".")) +
-      parseFloat(impressãoSemFoto.replace(",", ".")) *
-        parseFloat(paginasSemFotos.replace(",", ".")) +
-      parseFloat(impressãoComFoto.replace(",", ".")) *
-        parseFloat(paginasComFotos.replace(",", "."))) *
-    parseFloat(quantosLivros);
-  // Total do custo de impressão TODOS OS LIVROS
+    totalCustoPorLauda * parseFloat(laudas);
+  // Total do custo de um livro que usam todas as laudas de referência UM LIVRO
 
   // Total do custo de fotos UM LIVRO
   const totalCustoFotosUmLivro =
@@ -129,6 +119,35 @@ export default function Home() {
     parseFloat(ilustracoes.replace(",", ".")) *
     parseFloat(tratamentoPorIlustracao.replace(",", "."));
   // Total do custo de ilustrações UM LIVRO
+
+  // Total do custo de impressão da capa TODOS OS LIVROS
+  const totalCustoImpressaoDaCapaTodosOsLivros =
+    parseFloat(custoDaCapa.replace(",", ".")) * parseFloat(quantosLivros);
+  // Total do custo de impressão da capa TODOS OS LIVROS
+
+  // Total do custo de impressão sem foto UM LIVRO
+  const totalCustoImpressaoSemFotoUmLivro =
+    parseFloat(impressãoSemFoto.replace(",", ".")) *
+    parseFloat(paginasSemFotos.replace(",", "."));
+  // Total do custo de impressão sem foto UM LIVRO
+
+  // Total do custo de impressão com foto UM LIVRO
+  const totalCustoImpressaoComFotoUmLivro =
+    parseFloat(impressãoComFoto.replace(",", ".")) *
+    parseFloat(paginasComFotos.replace(",", "."));
+  // Total do custo de impressão com foto UM LIVRO
+
+  // Total do custo de impressão sem capa TODOS OS LIVROS
+  const totalCustoImpressaoSemCapaTodosOsLivros =
+    (totalCustoImpressaoSemFotoUmLivro + totalCustoImpressaoComFotoUmLivro) *
+    parseFloat(quantosLivros);
+  // Total do custo de impressão sem capa TODOS OS LIVROS
+
+  // Total do custo de impressão TODOS OS LIVROS
+  const totalCustoImpressaoTodosOsLivros =
+    totalCustoImpressaoDaCapaTodosOsLivros +
+    totalCustoImpressaoSemCapaTodosOsLivros;
+  // Total do custo de impressão TODOS OS LIVROS
 
   // Total do custo de transporte de TODOS OS LIVROS
   const totalCustoTransporteTodosOsLivros =
@@ -151,22 +170,23 @@ export default function Home() {
     totalCustoDistribuicaoTodosOsLivros;
   // Total do custo final sem margem de lucro, impostos TODOS OS LIVROS
 
-  // Imposto TODOS OS LIVROS
-  const impostoTodosOsLivros =
-    totalCustoSemMargemDeLucroEImpostosTodosOsLivros * imposto;
-  // Imposto TODOS OS LIVROS
-
   // Margem de lucro TODOS OS LIVROS
   const margemDeLucroTodosOsLivros =
-    (totalCustoSemMargemDeLucroEImpostosTodosOsLivros + impostoTodosOsLivros) *
-    margemDeLucro;
+    totalCustoSemMargemDeLucroEImpostosTodosOsLivros * margemDeLucro;
   // Margem de lucro TODOS OS LIVROS
+
+  // Imposto TODOS OS LIVROS
+  const impostoTodosOsLivros =
+    (totalCustoSemMargemDeLucroEImpostosTodosOsLivros +
+      margemDeLucroTodosOsLivros) *
+    imposto;
+  // Imposto TODOS OS LIVROS
 
   // Custo final TODOS OS LIVROS
   const totalCustoFinalTodosOsLivros =
     totalCustoSemMargemDeLucroEImpostosTodosOsLivros +
-    impostoTodosOsLivros +
-    margemDeLucroTodosOsLivros;
+    margemDeLucroTodosOsLivros +
+    impostoTodosOsLivros;
   // Custo final TODOS OS LIVROS
 
   // Custo final UM LIVRO
@@ -186,18 +206,6 @@ export default function Home() {
           <CardContent>
             <form>
               <div className="grid w-full items-center gap-4">
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="custoDaCapa">Custo da Capa</Label>
-                  <Input
-                    id="custoDaCapa"
-                    placeholder="Custo da capa"
-                    type="text"
-                    value={custoDaCapa}
-                    onChange={(e) =>
-                      setCustoDaCapa(formatNumberInput(e.target.value))
-                    }
-                  />
-                </div>
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="coordenador">Coordenador</Label>
                   <Input
@@ -375,6 +383,18 @@ export default function Home() {
             <form>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="custoDaCapa">Custo da Capa</Label>
+                  <Input
+                    id="custoDaCapa"
+                    placeholder="Custo da capa"
+                    type="text"
+                    value={custoDaCapa}
+                    onChange={(e) =>
+                      setCustoDaCapa(formatNumberInput(e.target.value))
+                    }
+                  />
+                </div>
+                <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="quantosLivros">
                     Quantas livros serão impressos?
                   </Label>
@@ -389,16 +409,30 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="pages">
+                  <Label htmlFor="paginas">
                     Quantas paginas terá o livro? (Total)
                   </Label>
                   <Input
-                    id="pages"
+                    id="paginas"
                     placeholder="Quantas paginas terá o livro?"
                     type="text"
-                    value={pages}
+                    value={paginas}
                     onChange={(e) =>
-                      setPages(formatNumberInput(e.target.value))
+                      setPaginas(formatNumberInput(e.target.value))
+                    }
+                  />
+                </div>
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="laudas">
+                    Quantas laudas terá o livro? (Total)
+                  </Label>
+                  <Input
+                    id="laudas"
+                    placeholder="Quantas laudas terá o livro?"
+                    type="text"
+                    value={laudas}
+                    onChange={(e) =>
+                      setLaudas(formatNumberInput(e.target.value))
                     }
                   />
                 </div>
@@ -621,7 +655,9 @@ export default function Home() {
                   <SheetDescription>
                     Quantos livros serão impressos: {quantosLivros}
                     <br />
-                    Páginas totais do livro: {pages}
+                    Páginas totais do livro: {paginas}
+                    <br />
+                    Laudas totais do livro: {laudas}
                     <br />
                     Páginas sem foto do livro: {paginasSemFotos}
                     <br />
@@ -634,11 +670,11 @@ export default function Home() {
                   </SheetDescription>
                   <SheetTitle>Custos fixos</SheetTitle>
                   <SheetDescription>
-                    Capa: R${" "}
+                    {/* Capa: R${" "}
                     {parseFloat(custoDaCapa.replace(",", "."))
                       .toFixed(2)
                       .replace(".", ",")}
-                    <br />
+                    <br /> */}
                     Coordenador: R${" "}
                     {parseFloat(coordenador.replace(",", "."))
                       .toFixed(2)
@@ -706,13 +742,16 @@ export default function Home() {
                   </SheetTitle>
                   <SheetDescription>
                     Revisor: R${" "}
-                    {(parseFloat(revisor.replace(",", ".")) * parseFloat(pages))
+                    {(
+                      parseFloat(revisor.replace(",", ".")) * parseFloat(laudas)
+                    )
                       .toFixed(2)
                       .replace(".", ",")}
                     <br />
                     Copydesk: R${" "}
                     {(
-                      parseFloat(copydesk.replace(",", ".")) * parseFloat(pages)
+                      parseFloat(copydesk.replace(",", ".")) *
+                      parseFloat(laudas)
                     )
                       .toFixed(2)
                       .replace(".", ",")}
@@ -720,7 +759,7 @@ export default function Home() {
                     Diagramador: R${" "}
                     {(
                       parseFloat(diagramador.replace(",", ".")) *
-                      parseFloat(pages)
+                      parseFloat(laudas)
                     )
                       .toFixed(2)
                       .replace(".", ",")}
@@ -728,7 +767,7 @@ export default function Home() {
                     Diagramador com foto: R${" "}
                     {(
                       parseFloat(diagramadorComFoto.replace(",", ".")) *
-                      parseFloat(pages)
+                      parseFloat(laudas)
                     )
                       .toFixed(2)
                       .replace(".", ",")}
@@ -783,11 +822,11 @@ export default function Home() {
                       .toFixed(2)
                       .replace(".", ",")}
                     <br />
-                    Imposto TODOS OS LIVROS (7%): R${" "}
-                    {impostoTodosOsLivros.toFixed(2).replace(".", ",")}
-                    <br />
                     Margem de lucro TODOS OS LIVROS (20%): R${" "}
                     {margemDeLucroTodosOsLivros.toFixed(2).replace(".", ",")}
+                    <br />
+                    Imposto TODOS OS LIVROS (7%): R${" "}
+                    {impostoTodosOsLivros.toFixed(2).replace(".", ",")}
                     <br />
                     Custo final TODOS OS LIVROS: R${" "}
                     {totalCustoFinalTodosOsLivros.toFixed(2).replace(".", ",")}
