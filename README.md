@@ -8,6 +8,6 @@ https://lacre.vercel.app/
 
 - Next.js
 - Typescript
-- CSS3, shadcn UI (https://ui.shadcn.com/)
+- CSS3, shadcn UI (https://ui.shadcn.com/), tailwindCSS
 
 
