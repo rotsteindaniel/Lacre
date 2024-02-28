@@ -6,4 +6,4 @@
 - Typescript
 - CSS3, shadcn UI (https://ui.shadcn.com/)
 
-### Site: lacre.vercel.app
+lacre.vercel.app
